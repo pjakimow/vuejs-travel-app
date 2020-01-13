@@ -15,7 +15,7 @@
         name: "DestinationDetails",
         data() {
             return {
-                slug: this.$route.params.slug
+                //slug: this.$route.params.slug // we will get this value from props
             }
         },
         computed: {
@@ -23,6 +23,12 @@
                 return store.destinations.find(
                     destination => destination.slug === this.slug
                 )
+            }
+        },
+        props: {
+            slug: { // component doesn't have to know there it has the data from
+                type: String,
+                required: true
             }
         }
     }
