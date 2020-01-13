@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/details/:id",
+    path: "/details/:slug",
     name: "DestinationDetails",
     component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails")
   }
@@ -19,7 +19,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  linkExactActiveClass: "my-custom-active-link-class"
+  linkExactActiveClass: "my-custom-active-link-class",
+  mode: "history" // removes # from the URL
 });
 
 export default router;

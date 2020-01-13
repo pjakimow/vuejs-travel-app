@@ -11,7 +11,7 @@
                 :key="destination.name" class="links">
                 <router-link :to="{
                     name: 'DestinationDetails',
-                    params: {id: destination.id}
+                    params: {slug: destination.slug}
                 }">
                     {{ destination.name }}
                 </router-link>
@@ -32,7 +32,6 @@
         data (){
             return {
                 destinations: store.destinations,
-                destinationId: this.$route.params.id
             }
         }
     }
