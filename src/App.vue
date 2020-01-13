@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <the-navigation></the-navigation>
-    <router-view :key="$route.path" />
+    <the-navigation/>
+    <transition name="fade">
+      <router-view :key="$route.path" />
+    </transition>
   </div>
 </template>
 <script>
@@ -18,5 +20,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
