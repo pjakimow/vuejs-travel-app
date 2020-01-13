@@ -26,7 +26,9 @@
                 // Authenticate against API
                 // Fake:
                 store.user = this.username;
-                this.$router.push({name: 'user'}); // redirect
+                const redirectPath = this.$route.query.redirect || '/';
+                this.$router.push(redirectPath); // redirect
+                //this.$router.push({name: 'user'}); // redirect
             }
         }
     }
