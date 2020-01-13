@@ -16,6 +16,9 @@
                     {{ destination.name }}
                 </router-link>
             </li>
+            <li>
+                <router-link :to="{name: 'user'}">Dashboard</router-link>
+            </li>
         </ul>
 <!--        <router-link to="/">Home</router-link>-->
 <!--        <router-link to="/brazil">Brazil</router-link>-->
@@ -40,8 +43,12 @@
 <style scoped>
     #nav{
         display: flex;
-        /*align-items: center;*/
-        /*padding: 30px;*/
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        border-bottom: 1px solid grey;
+        z-index: 1;
     }
     #nav a {
         font-weight: bold;

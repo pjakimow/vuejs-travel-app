@@ -46,6 +46,19 @@ const routes = [
     }
     },
   {
+    path: "/user",
+    name: "user",
+    component: () => import(/* webpackChunkName: "User" */ "../views/User"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import(/* webpackChunkName: "Login" */ "../views/Login")
+  },
+  {
     path: "/404", //it has to be at the end
     alias: "*",
     name: "notFound",
@@ -56,7 +69,37 @@ const routes = [
 const router = new VueRouter({
   routes,
   linkExactActiveClass: "my-custom-active-link-class",
-  mode: "history" // removes # from the URL
+  mode: "history", // removes # from the URL
+  scrollBehavior(to, from, savedPosition){
+    if(savedPosition){
+      return savedPosition;
+    } else {
+      const position = {};
+      if (to.hash) {
+        position.selector = to.hash;
+        if (to.hash === '#experience') {
+          position.offset = { y: 150 };
+        }
+        if (document.querySelector(to.hash)) {
+          return position;
+        }
+        return false;
+      }
+    }
+  }
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) { // when record or nested records requires auth
+    if(!store.user){ // when user is logged in, fake
+      next({
+        name: 'login'
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 export default router;
