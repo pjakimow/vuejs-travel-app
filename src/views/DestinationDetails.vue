@@ -1,5 +1,6 @@
 <template>
     <div>
+        <go-back/>
         <section class="destination">
             <h1>{{ destination.name }}</h1>
             <div class="destination-details">
@@ -28,8 +29,12 @@
 
 <script>
     import store from "../store";
+    import GoBack from "../components/GoBack";
     export default {
         name: "DestinationDetails",
+        components: {
+            GoBack
+        },
         data() {
             return {
                 //slug: this.$route.params.slug // we will get this value from props
